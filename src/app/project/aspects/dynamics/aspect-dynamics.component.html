@@ -1,0 +1,71 @@
+    <div class="m-content">
+        <div class="row ">
+            <div class="col-12">
+                <div class="m-portlet full-height-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+
+                                <h3 class="m-portlet__head-text m--font-brand">
+                                    Rules
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                           
+                            <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
+                                <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Sort
+                                </button>
+                                <button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Filter
+                                </button>
+                            </div>
+                            <button class="m--margin-left-20 btn btn-sm btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+                                <i class="fa fa-expand"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body" id="ruleLists" style="display:flex; flex-direction:column">
+                            <div style="padding-top:30px;flex: 0 0 auto">
+                                    <property-rule-edit [propertyList]="_propertyList" [embedded]="false" [disabled]="_loadingPanelVisible" (onAdd)="onAddRule($event)"></property-rule-edit>
+                            </div>
+                            <dx-list 
+                            style="flex: 1 1 20%"
+                            [dataSource]="_ruleGroup"
+                            [grouped]="true"
+                            selectionMode="none"
+                            [collapsibleGroups]="true">
+                                <div *dxTemplate="let item of 'group'">
+                                    <div>Property:  {{item.name}}</div>
+                                </div>
+                                <div *dxTemplate="let item of 'item'" style="display:flex; flex-direction: row;">
+                                    <div style="flex: 1 1 auto"> 
+                                            <dx-check-box [value]="item.enabled"  (onValueChanged)="onEnableOrDisableRule($event,item)" style="margin-right: 12px"></dx-check-box><span>{{item.formula}}</span>    
+                                    </div>
+                                    <div style="flex: 0 0 auto">
+                                            <a href="#" class="m--font-metal"><span (click)="onOpenRule(item.id)">Open</span></a>
+                                            <span>-</span>
+                                            <a href="#" class="m--font-metal"><span confirmClick (onConfirm)="onDeleteRule(item.id)">Delete</span></a>
+                                    </div> 
+                                </div>
+                            </dx-list>
+                            <dx-load-panel
+                                [position]="{ of: '#ruleLists' }"
+                                [(visible)]="_loadingPanelVisible"
+                                [showIndicator]="false"
+                                message=""
+                                [showPane]="false"
+                                [shading]="true"
+                                [closeOnOutsideClick]="false">
+                            </dx-load-panel>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+

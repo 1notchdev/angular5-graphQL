@@ -1,0 +1,24 @@
+.dx-accordion-item-body {
+  padding: 0;
+  margin: -1px;
+}
+
+.dx-accordion-item-opened h5 {
+  font-weight: 600;
+}
+
+.dx-accordion-item-closed h5 {
+  font-weight: 300;
+}
+
+.dx-accordion-item-opened .property-segment-text {
+  visibility: visible;
+}
+
+.dx-accordion-item-closed .property-segment-text {
+  visibility: collapse;
+}
+
+.dx-accordion-item:first-of-type.dx-accordion-item-closed:not(.dx-state-focused) {
+  border-top: transparent;
+}

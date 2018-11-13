@@ -1,0 +1,54 @@
+
+    <div class="m-content">
+        <div class="row ">
+            <div class="col-12">
+                <div class="m-portlet full-height-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+
+                                <h3 class="m-portlet__head-text m--font-brand">
+                                    Element Aspects
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+
+                            <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-success m-btn--bolder">
+                                Add Aspects
+                            </button>
+
+
+                            <button class="m--margin-left-20 btn btn-sm btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+                                <i class="fa fa-expand"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body ">
+
+                        <dx-data-grid
+                                id="gridContainer"
+                                [height] = "'100%'"
+                                [dataSource]="data">
+                            <dxo-selection mode="single"></dxo-selection>
+                            <dxi-column dataField="name"></dxi-column>
+                            <dxi-column dataField="created" [width]="150"></dxi-column>
+                            <dxi-column dataField="modified" [width]="150" sortOrder="desc"></dxi-column>
+                            <dxi-column [width]="150" cellTemplate="cellTemplate"></dxi-column>
+
+                            <div *dxTemplate="let data of 'cellTemplate'" class="m--font-metal">
+                                <a href="javascript:void(0)" class="m--font-metal">Open</a>
+                                <span>-</span>
+                                <a href="javascript:void(0)" class="m--font-metal">Remove</a>
+                            </div>
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+

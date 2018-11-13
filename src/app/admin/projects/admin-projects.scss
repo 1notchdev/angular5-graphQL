@@ -1,0 +1,15 @@
+.m-portlet__body{
+    overflow-y: hidden;
+    height: 100%;
+}
+.col-12 {
+    flex: 1 1 auto;
+}
+.m-portlet.full-height-portlet-no-head,{
+    height: 100%;
+    overflow: hidden;
+}
+
+.m-grid__item.m-grid__item--fluid.m-wrapper,  .row, .m-content{
+    height: 100%;
+}

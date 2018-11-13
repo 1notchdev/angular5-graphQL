@@ -1,0 +1,22 @@
+.m-portlet.full-height-portlet-w-footer .m-portlet__body {
+    height: calc(100vh - 360px);
+    padding-top: 0;
+  }
+  
+  .m-portlet.full-height-portlet .m-portlet__body {
+    height: calc(100vh - 320px);
+    padding-top: 0;
+    padding-bottom: 0;
+  
+  }
+  
+  .m-portlet.full-height-portlet-no-head .m-portlet__body {
+    height: calc(100vh - 255px);
+    padding-top: 0;
+    padding-bottom: 0;
+  
+  }
+  #cy {
+    height: 100%;
+    width: 100%;
+  }

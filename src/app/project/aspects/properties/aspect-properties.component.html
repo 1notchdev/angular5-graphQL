@@ -1,0 +1,65 @@
+
+    <div class="m-content">
+        <div class="row ">
+            <div class="col-12">
+                <div class="m-portlet full-height-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+
+                                <h3 class="m-portlet__head-text m--font-brand">
+                                    Properties
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+
+                            <button type="button" (click)="onOpenNewPropertyDialog()" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-success m-btn--bolder">
+                                New Property
+                            </button>
+
+
+                            <button class="m--margin-left-20 btn btn-sm btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+                                <i class="fa fa-expand"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                        <dx-data-grid
+                                id="gridContainer"
+                                [dataSource]="_propertyGroup.properties"
+                                [height] = "'100%'"
+                                [allowColumnReordering]="true">
+
+                            <dxi-column dataField="name"></dxi-column>
+                            <dxi-column caption="Property Type" dataField="kind" [width]="150"></dxi-column>
+                            <dxi-column caption="" dataField="id" cellTemplate="cellTemplate" [width]="150"></dxi-column>
+                            <dxi-column dataField="aspectId" groupCellTemplate="aspectIdCell" [groupIndex]="0" ></dxi-column>
+                            <div *dxTemplate="let cell of 'aspectIdCell'">
+                                <span>Direct Aspect: {{getGroupHeader(cell.value)}}</span>
+                            </div>
+                            <dxo-selection mode="single"></dxo-selection>
+
+                            <dxo-search-panel [visible]="false"></dxo-search-panel>
+                            <dxo-paging [enabled]="false"></dxo-paging>
+                            <dxo-group-panel [visible]="false"></dxo-group-panel>
+                            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                            <div *dxTemplate="let data of 'cellTemplate'" class="m--font-metal">
+                                <a href="#" class="m--font-metal"><span (click)="onOpenProperty(data.value)">Open</span></a>
+                                <span>-</span>
+                                <a href="#" class="m--font-metal"><span confirmClick (onConfirm)="onDeleteProperty(data.value)">Delete</span></a>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+   
+    <ng-container *ngIf="_popupVisible">
+        <new-property-dialog [(visible)]="_popupVisible" [aspectId]="_aspectID"  (visibleChange)="_popupVisible = false" (onPropertyCreated)="onNewPropertyCreated()"></new-property-dialog>
+    </ng-container>

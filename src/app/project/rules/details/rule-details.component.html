@@ -1,0 +1,47 @@
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-subheader">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    Rooya Holding
+                </h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+
+
+                    <li class="m-nav__item">
+                        <a routerLink="details" class="m-nav__link m-nav__link--icon">
+                            <span class="m-nav__link-text m-link">Details</span>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">
+                        -
+                    </li>
+
+                    <li class="m-nav__item">
+                        <a routerLink="history" class="m-nav__link">
+
+											<span class="m-nav__link-text m-link">
+												 Events Log</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div>
+			<span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
+				<span class="m-subheader__daterange-label">
+					<span class="m-subheader__daterange-title">Actions</span>
+					<span class="m-subheader__daterange-date m--font-brand"></span>
+				</span>
+				<a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
+					<i class="la la-angle-down"></i>
+				</a>
+			</span>
+            </div>
+        </div>
+    </div>
+
+    <router-outlet></router-outlet>
+
+</div>
+

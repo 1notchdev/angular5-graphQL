@@ -1,0 +1,117 @@
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+
+    <div class="m-content">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="m-portlet full-height-portlet-no-head">
+
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+
+                                <h3 class="m-portlet__head-text m--font-brand">
+                                    Aspects
+
+                                </h3>
+
+                            </div>
+
+
+                        </div>
+                        <div class="m-portlet__head-tools">
+
+                            <button class="btn btn btn-sm btn-accent m-btn m-btn--icon m-btn--pill m--margin-right-15" type="button" (click)="showPopUp()">
+									<span>
+										<i class="la la-plus"></i>
+										<span>
+											Create Aspect
+										</span>
+									</span>
+                            </button>
+
+
+
+                            <div class="btn-group mr-2" role="group">
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand ">
+                                    Filter
+                                </button>
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand ">
+                                    Open
+                                </button>
+                                <button type="button" (click)="onOpenExtendDialog(grid.instance.getSelectedRowsData())" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand ">
+                                    Extend
+                                </button>
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand ">
+                                    Delete
+                                </button>
+
+
+
+                            </div>
+                            <div class="btn-group mr-2" role="group">
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand ">
+                                    Import
+                                </button>
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand ">
+                                    Share
+                                </button>
+                            </div>
+
+
+                            <button class="m--margin-left-20 btn btn-sm btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+                                <i class="fa fa-expand"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+
+
+                        <dx-data-grid
+                                #grid
+                                id="gridContainer"
+                                [dataSource]="data"
+                                [height] = "'100%'"
+                                 keyExpr="id"
+                                [allowColumnReordering]="true">
+
+                            <dxi-column dataField="name"></dxi-column>
+                            <dxi-column dataField="kind" [width]="150"></dxi-column>
+                            <dxi-column dataField="dateCreated"  [sortIndex]="0" sortOrder="desc" [width]="150" dataType="date" caption="Created Date" cellTemplate="dateCell"></dxi-column>
+                            <div *dxTemplate="let cellData of 'dateCell'">
+                                   {{cellData.value | date: 'dd-MMM-yy'}}
+                           </div>
+                            <dxi-column dataField="description" [width]="150"></dxi-column>
+                            <dxi-column dataField="id" caption="" cellTemplate="cellTemplate" [width]="150"></dxi-column>
+
+                            <dxo-selection  showCheckBoxesMode="none" mode="multiple"></dxo-selection>
+
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-paging [enabled]="false"></dxo-paging>
+                            <!--<dxo-group-panel [visible]="false"></dxo-group-panel>-->
+                            <!--<dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>-->
+                            <div *dxTemplate="let id of 'cellTemplate'" class="m--font-metal">
+                                <a routerLink="{{id.value}}" class="m--font-metal">Open</a>
+                                <span>-</span>
+                                <a href="#" class="m--font-metal"><span confirmClick (onConfirm)="onDeleteAspect(id.value)">Delete</span></a>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <ng-container *ngIf="popupVisible">
+        <aspect-creator [visible]="popupVisible" (onClose)="popupVisible = false" [aspects]="data" (onAspectCreated)="onAspectCreated($event)"></aspect-creator>
+    </ng-container>
+   
+    <ng-container *ngIf="_extendPopupVisible">
+        <aspect-selector-dialog [visible]="_extendPopupVisible" (visibleChange)="_extendPopupVisible = false" [aspects]="_selectedAspects"></aspect-selector-dialog>
+    </ng-container>
+
+</div>
+

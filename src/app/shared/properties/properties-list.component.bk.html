@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-12">
+        <dx-accordion
+                #accordion
+                [dataSource]="properties"
+                [collapsible]="true"
+                [deferRendering] = "true"
+                [multiple]="true"
+                [selectedIndex] = "-1"
+                [animationDuration]="300"
+        >
+            <div>
+
+            </div>
+            <div *dxTemplate="let property of 'title'">
+                <h5 class="m--padding-bottom-5 m--padding-top-5">
+                    {{property.name}}
+                    <span class="property-segment-text m--regular-font-size-sm1 m--font-thin"> {{property.segment}}</span>
+
+                </h5>
+            </div>
+            <div *dxTemplate="let property of 'item'">
+                <div *ngIf="property.type == 'constant'">
+
+                    <property-grid [expression]="'constant'"></property-grid>
+
+                </div>
+                <div *ngIf="property.type == 'relation'">
+                    <dx-tab-panel
+                            #tabPanel
+                            [height]="'auto'"
+                            [dataSource]="['Components','Components Properties']"
+                            [selectedIndex]="0"
+                            [loop]="false"
+                            [animationEnabled]="false"
+                            [swipeEnabled]="true">
+                        <div *dxTemplate="let tab of 'title'">
+                            <span>{{tab}}</span>
+                        </div>
+                        <div class="m--padding-10" *dxTemplate="let tab of 'item'">
+                            <div class="tabpanel-item">
+                                <div *ngIf="tab == 'Components'">
+                                    <dx-tag-box class="m--margin-top-20"
+                                                [items]="['Stone Park', 'Telal Soukhna', 'Telal Sahel', 'Hadaba', 'Marsa Moureen']"
+                                                [searchEnabled]="true">
+                                    </dx-tag-box>
+
+                                </div>
+
+                                <div *ngIf="tab == 'Components Properties'">
+
+
+                                    <properties-list></properties-list>
+
+                                </div>
+                            </div>
+                        </div>
+                    </dx-tab-panel>
+                </div>
+                <div *ngIf="property.type == 'numerical'">
+
+                    <property-grid [expression]="''"></property-grid>
+                </div>
+            </div>
+        </dx-accordion>
+
+    </div>
+</div>
+

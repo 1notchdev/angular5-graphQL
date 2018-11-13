@@ -1,0 +1,56 @@
+<dx-popup
+        class=""
+        [width]="'80vw'"
+        [height]="'80vh'"
+        [showTitle]="true"
+        title={{title}}
+        [dragEnabled]="false"
+        [shading]="true"
+        [shadingColor]="'rgb(0,0,0,0.3)'"
+        [closeOnOutsideClick]="false"
+        [showCloseButton]="true"
+        (onHidden)="close()"
+        [(visible)]="visible">
+    <div *dxTemplate="let data of 'content'">
+
+        <div class="m-portlet" style="height: 100%">
+
+            <form class="m-form" style="height: 100%">
+                <div class="m-portlet__body" style="height: calc(100% - 97px); padding-top: 0;padding-bottom: 0">
+                    <dx-scroll-view>
+                        <div class="m-form__section m-form__section--first m--padding-bottom-30 m--padding-top-30">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Project Name:
+                                </label>
+                                <div class="col-lg-4">
+                                    <dx-text-box class="form-control m-input" [(value)]="_projectName">
+                                        <dx-validator>
+                                            <dxi-validation-rule type="required" message="Project Name is required"></dxi-validation-rule>
+                                        </dx-validator>
+                                    </dx-text-box>
+                                 
+                                    <span class="m-form__help">
+								Enter a unique Project name
+							</span>
+                                </div>
+                            </div>
+                        </div>
+                    </dx-scroll-view>
+                </div>
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid m-form__actions--right">
+                        <span class="float-left">Help</span>
+                        <button class="btn btn-brand m-btn--wide" type="button" (click)="onSubmit()">
+                            Done
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!--begin::Form-->
+            <!--end::Form-->
+        </div>
+
+    </div>
+</dx-popup>
+

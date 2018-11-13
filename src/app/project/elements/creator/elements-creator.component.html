@@ -1,0 +1,96 @@
+<dx-popup
+        class=""
+        [width]="width"
+        [height]="height"
+        [showTitle]="true"
+        title={{title}}
+        [dragEnabled]="false"
+        [shading]="true"
+        [shadingColor]="'rgb(0,0,0,0.3)'"
+        [closeOnOutsideClick]="false"
+        [showCloseButton]="true"
+        (onHidden)="onClose()"
+        [visible]="visible">
+    <div *dxTemplate="let data of 'content'">
+
+        <div id="mainContent" class="m-portlet" style="height: 100%">
+
+            <form class="m-form" style="height: 100%">
+                <div class="m-portlet__body" style="height: calc(100% - 97px); padding-top: 0;padding-bottom: 0">
+                    <dx-scroll-view>
+                        <div class="m-form__section m-form__section--first m--padding-bottom-30 m--padding-top-30">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Enter element names:
+                                </label>
+                                <div class="col-lg-4" *ngIf="!_duplicateElement">
+                                        <dx-text-area [height] = "150"  [(value)]="elementNames" class="form-control m-input"></dx-text-area>
+                                     
+                                    <span class="m-form__help">
+							        	Enter one or more element names separated by a comma
+							        </span>
+                                </div>
+                                <div *ngIf="_duplicateElement" class="col-lg-8">
+                                        <dx-text-box [(value)]="elementNames" class="form-control m-input"></dx-text-box>
+                                    <span class="m-form__help">
+								        Enter one or more element names separated by a comma
+							        </span>
+                                </div>
+                            </div>
+                            <div *ngIf="!_duplicateElement" class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">
+                                    Aspects:
+                                </label>
+                                <div class="col-lg-10">
+                                    <aspect-chooser [(selectedAspects)]="selectedAspects"></aspect-chooser>
+                                    <span class="m-form__help">
+								Assign one or more aspects to the elements you want to create
+							</span>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-10">
+                                    <dx-list [hidden]="_statusMessages.length == 0"
+                                    [dataSource]="_statusMessages"
+                                    style="flex: 1 1 100px">
+                                        <div *dxTemplate="let item of 'item'" style="display:flex; flex-direction: row;">
+                                                <div style="flex: 1 1 auto"> 
+                                                 <span>{{item.content}}</span>    
+                                                </div>
+                                        </div>
+                                    </dx-list>
+						
+                                </div>
+                            </div>
+                        </div>
+                    </dx-scroll-view>
+                </div>
+
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions--solid m-form__actions--right">
+                        <button  class="btn btn-brand m-btn--wide" type="reset" (click)="onDone()">
+                            Done
+                        </button>
+                        <button class="btn btn-secondary m-btn--wide" type="reset" (click)="onClose()">
+                            Cancel
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+            <!--begin::Form-->
+            <!--end::Form-->
+        </div>
+
+    </div>
+</dx-popup>
+
+<dx-load-panel
+[position]="{ of: '#mainContent' }"
+[(visible)]=" _loadingVisble"
+[showIndicator]="false"
+message=""
+[showPane]="false"
+[shading]="true"
+[closeOnOutsideClick]="false">
+</dx-load-panel>

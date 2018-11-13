@@ -1,0 +1,84 @@
+<div class="new-property">
+    <div data-repeater-item
+         class="form-group m-form__group row align-items-center">
+        <div class="col-12">
+            <small><span>Property Type: Numerical</span></small>
+
+        </div>
+    </div>
+    <div data-repeater-item
+         class="form-group m-form__group row align-items-center">
+        <div class="col-md-4">
+            <div class="m-form__group m-form__group--inline">
+                <div class="m-form__label">
+                    <label>
+                        Property Name:
+                    </label>
+                </div>
+                <div class="m-form__control">
+                    <dx-text-box class="form-control m-input" [(value)]="propertyName">
+                        <dx-validator>
+                            <dxi-validation-rule type="required" message="Property Name is required"></dxi-validation-rule>
+                        </dx-validator>
+                    </dx-text-box>
+                </div>
+            </div>
+            <div class="d-md-none m--margin-bottom-10"></div>
+        </div>
+        <div class="col-md-4">
+            <div class="m-form__group m-form__group--inline">
+                <div class="m-form__label">
+                    <label>
+                        Aggregation Method:
+                    </label>
+                </div>
+                <div class="m-form__control">
+                    <dx-text-box class="form-control m-input" [(value)]="aggregationMethod"></dx-text-box>
+                </div>
+            </div>
+            <div class="d-md-none m--margin-bottom-10"></div>
+        </div>
+    </div>
+    <div data-repeater-item
+         class="form-group m-form__group row align-items-center">
+        <div class="col-md-4">
+            <div class="m-form__group m-form__group--inline">
+                <div class="m-m-form__label">
+                    <label>Time Series</label>
+                </div>
+                <div class="m-form__control">
+                    <dx-check-box [(value)]="timeSeries"></dx-check-box>
+                </div>
+              
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="m-form__group m-form__group--inline">
+                    <div class="m-m-form__label">
+                           <label>Time Series Type:</label>
+                           
+                        </div>
+                        <div class="m-form__control">
+                                <dx-radio-group
+                                [items]="_timeSeriesTypes"
+                                [(value)]="timeSeriesType"
+                                layout="horizontal">
+                            </dx-radio-group>
+                        </div>
+            </div>
+            <div class="d-md-none m--margin-bottom-10"></div>
+        </div>
+        <div class="col-md-2">
+            <div class="btn-sm btn btn-secondary m-btn m-btn--icon m-btn--pill m-btn--air m-btn--custom m-btn--label-danger m-btn--bolder m-btn--uppercase" (click)="onClickDelete()">
+    <span>
+        <i class="la la-trash-o m--font-danger"></i>
+        <span>
+            Delete
+        </span>
+    </span>
+            </div>
+        </div>
+    </div>
+    <div style="border-top: thin solid whitesmoke"
+         class="form-group m-form__group row align-items-center"></div>
+</div>

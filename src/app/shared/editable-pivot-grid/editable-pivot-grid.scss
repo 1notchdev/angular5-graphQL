@@ -1,0 +1,41 @@
+@mixin highlight-cell($border-color, $pointer-events: none){
+    content: '';
+        border: 2px solid $border-color !important;
+        position:absolute;
+        top:0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        box-sizing: border-box;
+        pointer-events: $pointer-events;
+   
+}
+.editable-pivot-grid{
+    height: 100%;
+    width: 100%;
+    .dx-pivotgrid td.indigo-focused-cell{
+        position:relative;
+        &:after{
+            @include highlight-cell(#337AB7);
+        }
+    }
+
+    .dx-pivotgrid td.indigo-modified-cell{
+        position:relative;
+        &:not(.indigo-focused-cell):after{
+            @include highlight-cell(rgba(92, 184, 92, 0.5));
+        }
+    }
+
+    .dx-pivotgrid td.indigo-header-cell {
+        position:relative;
+        .header-overlay{
+            @include highlight-cell(transparent,pointer);
+            background-color: transparent;
+        }
+    }
+
+     
+}
+
+

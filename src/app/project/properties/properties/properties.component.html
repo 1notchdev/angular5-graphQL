@@ -1,0 +1,100 @@
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+
+    <div class="m-content">
+        <div class="row ">
+            <div class="col-12">
+                <div class="m-portlet full-height-portlet-no-head">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+
+                                <h3 class="m-portlet__head-text m--font-brand">
+                                    Properties
+
+                                </h3>
+
+                            </div>
+
+
+                        </div>
+                        <div class="m-portlet__head-tools">
+
+                            <button class="btn btn btn-sm btn-accent m-btn m-btn--icon m-btn--pill m--margin-right-15" type="button" (click)="showPopUp()">
+									<span>
+										<i class="la la-plus"></i>
+										<span>
+											Create Properties
+										</span>
+									</span>
+                            </button>
+                            <div class="btn-group mr-2" role="group">
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Filter
+                                </button>
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Open
+                                </button>
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Bulk Edit
+                                </button>
+                                <button type="button" (click)="onDuplicateElement(grid.instance.getSelectedRowsData())" [disabled]="_selectedProperties.length !== 1" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Duplicate
+                                </button>
+                                <button type="button" confirmClick (onConfirm)="onDeleteProperties(grid.instance.getSelectedRowsData())" [disabled]="_selectedProperties.length === 0" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Delete
+                                </button>
+
+
+                            </div>
+
+
+                            <button class="m--margin-left-20 btn btn-sm btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+                                <i class="fa fa-expand"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                                <dx-data-grid
+                                #grid
+                                id="gridContainer"
+                                [(selectedRowKeys)]="_selectedProperties"
+                                [dataSource]="_propertyGroup.properties"
+                                [height] = "'100%'"
+                                [allowColumnReordering]="true">
+
+                            <dxi-column dataField="name"></dxi-column>
+                            <dxi-column caption="Property Type" dataField="kind" [width]="150"></dxi-column>
+                            <dxi-column caption="Created Date" dataField="dateCreated" sortOrder="desc" [width]="150"></dxi-column>
+                            <dxi-column caption="" dataField="id" cellTemplate="cellTemplate" [width]="150"></dxi-column>
+                            <dxi-column dataField="aspectId" groupCellTemplate="aspectIdCell" [groupIndex]="0" ></dxi-column>
+                            <div *dxTemplate="let cell of 'aspectIdCell'">
+                                <span>Aspect: {{getGroupHeader(cell.value)}}</span>
+                            </div>
+                            <dxo-selection  showCheckBoxesMode="none" mode="multiple"></dxo-selection>
+
+                            <dxo-search-panel [visible]="true"></dxo-search-panel>
+                            <dxo-paging [enabled]="false"></dxo-paging>
+                            <dxo-group-panel [visible]="false"></dxo-group-panel>
+                            <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+                            <div *dxTemplate="let data of 'cellTemplate'" class="m--font-metal">
+                                <a routerLink="{{data.value}}" class="m--font-metal"><span>Open</span></a>
+                                <span>-</span>
+                                <a href="#" class="m--font-metal"><span confirmClick (onConfirm)="onDeleteProperty(data.value)">Delete</span></a>
+                            </div>
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+<!--     <ng-container *ngIf="popupVisible">
+        <elements-creator [visible]="popupVisible" (onCloseEvent)="onPopupClose()" [duplicateElement]="_duplicateElement" (onNewElementCreated)="onNewElementCreated()"></elements-creator>
+    </ng-container>
+   -->
+
+</div>
+

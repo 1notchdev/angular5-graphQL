@@ -1,0 +1,100 @@
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+
+    <div class="m-content">
+        <div class="row ">
+            <div class="col-12">
+                <div class="m-portlet full-height-portlet-no-head">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+
+                                <h3 class="m-portlet__head-text m--font-brand">
+                                    Elements
+
+                                </h3>
+
+                            </div>
+
+
+                        </div>
+                        <div class="m-portlet__head-tools">
+
+                            <button class="btn btn btn-sm btn-accent m-btn m-btn--icon m-btn--pill m--margin-right-15" type="button" (click)="showPopUp()">
+									<span>
+										<i class="la la-plus"></i>
+										<span>
+											Create Element
+										</span>
+									</span>
+                            </button>
+                            <div class="btn-group mr-2" role="group">
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Filter
+                                </button>
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Open
+                                </button>
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Bulk Edit
+                                </button>
+                                <button type="button" (click)="onDuplicateElement(grid.instance.getSelectedRowsData())" [disabled]="_selectedElements.length !== 1" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Duplicate
+                                </button>
+                                <button type="button" confirmClick (onConfirm)="onDeleteElements(grid.instance.getSelectedRowsData())" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Delete
+                                </button>
+
+
+                            </div>
+
+
+                            <button class="m--margin-left-20 btn btn-sm btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+                                <i class="fa fa-expand"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+
+
+                        <dx-data-grid
+                                #grid
+                                id="gridContainer"
+                                [dataSource]="elements"
+                                [(selectedRowKeys)]="_selectedElements"
+                                [height] = "'100%'"
+                                [allowColumnReordering]="true">
+
+                            <dxi-column dataField="name"></dxi-column>
+                            <dxi-column dataField="dateCreated" cellTemplate="dateCell" sortOrder="desc" caption="Created Date" dateType="date" [width]="150"></dxi-column>
+                            <div *dxTemplate="let date of 'dateCell'">
+                                {{ date.value | date: 'dd-MMM-yy'}}
+                            </div>
+                            <dxi-column dataField="id" caption= "" cellTemplate="cellTemplate" [width]="150"></dxi-column>
+
+                            <dxo-selection  showCheckBoxesMode="none" mode="multiple"></dxo-selection>
+
+                            <dxo-search-panel [visible]="false"></dxo-search-panel>
+                            <dxo-paging [enabled]="false"></dxo-paging>
+                            <!--<dxo-group-panel [visible]="false"></dxo-group-panel>-->
+                            <!--<dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>-->
+                            <div *dxTemplate="let data of 'cellTemplate'" class="m--font-metal">
+                                <a routerLink="{{data.value}}" class="m--font-metal">Open</a>
+                                <span>-</span>
+                                <a href="#" class="m--font-metal"><span confirmClick (onConfirm)="onDeleteElement(data.value)">Delete</span></a>
+                            </div>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <ng-container *ngIf="popupVisible">
+        <elements-creator [visible]="popupVisible" (onCloseEvent)="onPopupClose()" [duplicateElement]="_duplicateElement" (onNewElementCreated)="onNewElementCreated()"></elements-creator>
+    </ng-container>
+  
+
+</div>
+

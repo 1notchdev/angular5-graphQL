@@ -1,0 +1,75 @@
+
+    <div class="m-content">
+        <div class="row ">
+            <div class="col-12">
+                <div class="m-portlet full-height-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+
+                                <h3 class="m-portlet__head-text m--font-brand">
+                                    Details
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+
+                            <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
+                                <button type="button" (click)="onOpenExtendParentDialog()" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Extend
+                                </button>
+                                <button type="button" (click)="onDeleteAspect()" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-danger m-btn--bolder">
+                                    Delete
+                                </button>
+                            </div>
+                            <button class="m--margin-left-20 btn btn-sm btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+                                <i class="fa fa-expand"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                        <dx-scroll-view>
+
+                            <br/>
+                        <dx-form class="form-not-editing" [formData]="_aspect" [colCount]="1">
+
+                            <dxi-item itemType="group" [colCount]="2" >
+                                <dxi-item [label]="{text: 'fingerprint'}" dataField="id" [editorOptions]="{readOnly: true}"></dxi-item>
+                                <dxi-item itemType="empty" [editorOptions]="{readOnly: true}"></dxi-item>
+                                <dxi-item dataField="name" [editorOptions]="{readOnly: true}"></dxi-item>
+                                <dxi-item itemType="empty" [editorOptions]="{readOnly: true}"></dxi-item>
+                                <dxi-item dataField="description" [colSpan]="2" [editorOptions]="{readOnly: true}"></dxi-item>
+
+                            </dxi-item>
+                            <dxi-item [colSpan]="2">
+                                <div class="dashed-separator"></div>
+                            </dxi-item>
+
+
+                            <dxi-item itemType="group" [colCount]="2">
+                                <dxi-item dataField="dateCreated" [editorOptions]="{readOnly: true}"> </dxi-item>
+                                        <dxi-item dataField="dateModified" [editorOptions]="{readOnly: true}"></dxi-item>
+                                        <dxi-item dataField="createdBy" [editorOptions]="{readOnly: true}"></dxi-item>
+                                        <dxi-item dataField="modifiedBy" [editorOptions]="{readOnly: true}"></dxi-item>
+                                </dxi-item>
+
+                                </dx-form>
+
+                        </dx-scroll-view>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+   
+<ng-container *ngIf="_popupVisible">
+    <aspect-selector-dialog [visible]="_popupVisible" (visibleChange)="_popupVisible = false" [aspects]="[_aspect]"></aspect-selector-dialog>
+</ng-container>

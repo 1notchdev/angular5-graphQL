@@ -1,0 +1,75 @@
+<dx-popup
+class="popup"
+[width]="'80vw'"
+[height]="'80vh'"
+[showTitle]="true"
+title="New Property"
+[dragEnabled]="false"
+(onHidden)="close()"
+[closeOnOutsideClick]="false"
+[(visible)]="visible">
+<div *dxTemplate="let data of 'content'">
+
+    <div class="m-portlet" style="height: 100%">
+
+        <form class="m-form" style="height: 100%">
+            <div class="m-portlet__body" style="height: calc(100% - 97px); padding-top: 40px;padding-bottom: 0; display:flex; flex-direction: column">
+                    <div class="m-form__group form-group row" style="flex: 0 0 auto">
+                            <label class="col-lg-2 col-form-label"></label>
+                            <div class="col-lg-4">
+                                <dx-lookup
+                                        [items]="['Numerical', 'Component', 'Text', 'Relation','True/False', 'Time', 'Location', 'Financial Statements Item','Multidimensional','Decision Matrix','Risk Matrix','Decision Tree','Route','State']"
+                                        placeholder="Select property type"
+                                        [closeOnOutsideClick]="true"
+                                        [showPopupTitle]="false" [(value)]="_newPropertyType">
+                                        <dx-validator>
+                                            <dxi-validation-rule type="required" message="Property Type is required"></dxi-validation-rule>
+                                        </dx-validator>
+                                </dx-lookup>
+    
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="btn btn btn-sm m-btn--air btn-secondary m-btn--custom m-btn--label-success m-btn--bolder m-btn m-btn--icon m-btn--pill m-btn--wide" (click)="onAddNewProperty()">
+                            <span>
+                                <i class="la la-plus m--font-success"></i>
+                                <span>
+                                    Add New Property
+                                </span>
+                            </span>
+                                </div>
+    
+                            </div>
+                     </div>  
+                    <div class="form-group  m-form__group row" id="m_repeater_1" style="flex: 1 1 10%">
+                        <label class="col-lg-2 col-form-label">
+                            Properties:
+                        </label>
+                        <div class="col-lg-10">
+                                <dx-scroll-view>
+                                        <div style="padding-bottom:30px;">
+                                            <div #properiesEditForm></div>
+                                        </div>
+                                </dx-scroll-view>
+                            </div>
+                    </div>
+                                 
+             </div>
+                  
+              
+          
+
+            <div class="m-portlet__foot m-portlet__foot--fit">
+                <div class="m-form__actions m-form__actions--solid m-form__actions--right">
+                    <span class="float-left">Help</span>
+                    <button class="btn btn-brand m-btn--wide" type="button" (click)="onSubmit()">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </form>
+        <!--begin::Form-->
+        <!--end::Form-->
+    </div>
+
+</div>
+</dx-popup>

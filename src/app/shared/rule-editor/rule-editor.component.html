@@ -1,0 +1,2 @@
+<!-- <td-code-editor #editor  [value]="rule" (change)="onRuleChange($event)" [editorOptions]="editorOptions" style="height: 100%" theme="vs" flex language="sql"></td-code-editor> -->
+<ngx-monaco-editor [options]="editorOptions" [ngModel]="value" (ngModelChange)="onRuleChange($event)" [model]="model" style="width:100%; height:100%" (onInit)="onInit($event)"></ngx-monaco-editor>

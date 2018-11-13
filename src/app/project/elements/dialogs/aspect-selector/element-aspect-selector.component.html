@@ -1,0 +1,55 @@
+<dx-popup
+class="popup"
+[width]="'40vw'"
+[height]="'30vh'"
+[showTitle]="true"
+title="Aspect Selector"
+[dragEnabled]="false"
+(onHidden)="close()"
+[closeOnOutsideClick]="false"
+[visible]="visible">
+<div *dxTemplate="let data of 'content'">
+
+    <div id="mainContent" class="m-portlet" style="height: 100%">
+
+        <form class="m-form" style="height: 100%">
+            <div class="m-portlet__body" style="height: calc(100% - 97px); padding-top: 40px;padding-bottom: 0; display:flex; flex-direction: column">
+                <div class="form-group m-form__group row" style="flex: 0 0 auto">
+                    <label class="col-lg-2 col-form-label">
+                        Aspects:
+                    </label>
+                    <div class="col-lg-8">
+                        <aspect-chooser [excludedAspects]="aspects" [(selectedAspects)]="_selectedAspects"></aspect-chooser>
+                        <span class="m-form__help">
+                            Select existing Aspects you want to include to the current element
+                         </span>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__foot m-portlet__foot--fit">
+                <div class="m-form__actions m-form__actions--solid m-form__actions--right">
+                    <span class="float-left">Help</span>
+                    <button class="btn btn-brand m-btn--wide" type="reset" (click)="close()">
+                        Close
+                    </button>
+                    <button class="btn btn-brand m-btn--wide" type="reset" (click)="onSubmit()">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </form>
+        <!--begin::Form-->
+        <!--end::Form-->
+    </div>
+        <dx-load-panel
+            [position]="{ of: '#mainContent' }"
+            [(visible)]=" _loadingVisble"
+            [showIndicator]="false"
+            message=""
+            [showPane]="false"
+            [shading]="true"
+            [closeOnOutsideClick]="false">
+        </dx-load-panel>
+   
+</div>
+</dx-popup>

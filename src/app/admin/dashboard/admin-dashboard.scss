@@ -1,0 +1,30 @@
+.m-portlet.m-portlet--full-height{
+    height: calc(100vh - 2rem - 120px);
+    padding-top: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.m-portlet {
+    margin-bottom: 0px;
+}
+.scroll-container{
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    flex: 1 1 100%;
+}
+
+.indigo-container .m-portlet__body{
+    display: flex;
+    flex-direction: column;
+}
+
+.m-portlet.m-portlet--full-height .m-portlet__body  {
+    padding-top: 0;
+    padding-bottom: 0;
+    height: calc(100% - 2.2rem);
+}
+.tab-content{
+    height: 100%;
+}

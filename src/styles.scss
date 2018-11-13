@@ -1,0 +1,67 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/devextreme/dist/css/dx.common.css";
+@import "devexpress.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.dashed-separator {
+    border-bottom: 0.15rem dashed rgb(235, 237, 242);
+    margin: 20px 0;
+  }
+  
+  .outer-justified {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .m-portlet .m-portlet__body .dx-datagrid-rowsview {
+    border: hidden;
+  }
+  .m-portlet.full-height-portlet-no-head .m-portlet__head .m-portlet__head-caption .m-portlet__head-title .m-portlet__head-text {
+    font-size: 2rem;
+  }
+  
+  .m-portlet .m-portlet__foot {
+    padding: 7px 7px 7px;
+  }
+  
+  .m-nav-sticky {
+    transition: all .3s ease;
+  }
+  
+  
+  
+  .m-footer--push.m-aside-left--enabled:not(.m-footer--fixed) .m-aside-right, .m-footer--push.m-aside-left--enabled:not(.m-footer--fixed) .m-wrapper {
+    margin-bottom: 0;
+  }
+  
+  .dx-tag-content {
+  
+    background-color: #716aca;
+    color: whitesmoke;
+  }
+  
+  .dx-tag-remove-button::before, .dx-tag-remove-button::after {
+    background-color: #9390b5;
+  }
+  
+  
+  .dx-tabpanel .dx-tabs {
+    background-color: #f2f3f8;
+  }
+  
+  .dx-datagrid-rowsview .dx-row:hover > td{
+    background-color: #f2f3f8;
+  }
+  
+  .dx-datagrid-rowsview .dx-selection.dx-row > td, .dx-datagrid-rowsview .dx-selection.dx-row:hover > td{
+    background-color: #716aca;
+    color: whitesmoke;
+  }
+
+  .dx-treeview-item:not(.dx-state-hover) > .dx-treeview-item-content .go-to-selected {
+    visibility: hidden;
+  }
+  .dx-popup-content {
+    padding: 0;
+  }

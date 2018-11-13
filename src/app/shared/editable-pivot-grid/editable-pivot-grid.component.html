@@ -1,0 +1,11 @@
+<div #grid class="editable-pivot-grid" style="display:flex; flex-direction:column">
+    <div style="flex: 0 0 auto; display:flex; flex-direction: row; justify-content: flex-end; margin: 10px 0px">
+            <dx-button width="100" text="Reset" type="normal" [disabled]="_changedCellsMap.size == 0" (onClick)="onReload()"></dx-button>
+            <div style="width:10px"></div>
+            <dx-button width="80" text="Save"  type="default" [disabled]="_changedCellsMap.size == 0" (onClick)="onSaveChanges()"></dx-button>
+    </div>
+    <div style="flex:1 1 50%; overflow:hidden">
+        <ng-content include="dx-pivot-grid"></ng-content>
+    </div>
+</div>
+

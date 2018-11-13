@@ -1,0 +1,73 @@
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+
+    <div class="m-content">
+        <div class="row ">
+            <div class="col-12">
+                <div class="m-portlet full-height-portlet-no-head">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+
+                                <h3 class="m-portlet__head-text m--font-brand">
+                                    Rules
+
+                                </h3>
+
+                            </div>
+
+
+                        </div>
+                        <div class="m-portlet__head-tools">
+
+                            <button class="btn btn btn-sm btn-accent m-btn m-btn--icon m-btn--pill m--margin-right-15" type="button">
+									<span>
+										<i class="la la-plus"></i>
+										<span>
+											Create Rules
+										</span>
+									</span>
+                            </button>
+                            <div class="btn-group mr-2" role="group">
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Filter
+                                </button>
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Open
+                                </button>
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Bulk Edit
+                                </button>
+                                <button type="button" (click)="onDuplicateElement(grid.instance.getSelectedRowsData())" [disabled]="_selectedProperties.length !== 1" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Duplicate
+                                </button>
+                                <button type="button" confirmClick (onConfirm)="onDeleteProperties(grid.instance.getSelectedRowsData())" [disabled]="_selectedProperties.length === 0" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Delete
+                                </button>
+
+
+                            </div>
+
+
+                            <button class="m--margin-left-20 btn btn-sm btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+                                <i class="fa fa-expand"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                            <rule-editor style="height:100%"></rule-editor>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+<!--     <ng-container *ngIf="popupVisible">
+        <elements-creator [visible]="popupVisible" (onCloseEvent)="onPopupClose()" [duplicateElement]="_duplicateElement" (onNewElementCreated)="onNewElementCreated()"></elements-creator>
+    </ng-container>
+   -->
+
+</div>
+

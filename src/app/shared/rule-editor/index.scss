@@ -1,0 +1,16 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.monaco-editor .decorationsOverviewRuler {
+    display: none;
+}
+
+.error-token {
+    background-color: red !important;
+    color: white !important;
+	cursor: pointer;
+	font-weight: bold;
+	font-style: oblique;
+}

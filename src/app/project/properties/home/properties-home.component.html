@@ -1,0 +1,60 @@
+
+    <div class="m-content">
+        <div class="row ">
+            <div class="col-12">
+                <div class="m-portlet full-height-portlet">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+
+                                <h3 class="m-portlet__head-text m--font-brand">
+                                    Details
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+
+                            <div class="btn-group m-btn-group m-btn-group--pill" role="group" aria-label="...">
+                                <button type="button" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Edit
+                                </button>
+                                <button type="button" (click)="onDuplicateElement()" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                    Clone
+                                </button>
+                                <button type="button" confirmClick (onConfirm)="onDeleteElement()" class="btn btn-sm m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-danger m-btn--bolder">
+                                    Delete
+                                </button>
+                            </div>
+                            <button class="m--margin-left-20 btn btn-sm btn-outline-metal m-btn m-btn--icon m-btn--icon-only m-btn--pill" type="button">
+                                <i class="fa fa-expand"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="m-portlet__body">
+                        <editable-pivot-grid [propertyID]="_propertyID" (onDataChanged)="onDataChange($event)" valueField="amount">
+                                <dx-pivot-grid #sales id="sales"
+                                    [allowSortingBySummary]="true"
+                                    [allowSorting]="true"
+                                    [allowFiltering]="true"
+                                    [allowExpandAll]="true"
+                                    [showColumnGrandTotals]="false"
+                                    [showRowGrandTotals]="false"
+                                    [height]="'100%'"
+                                    [showBorders]="true"
+                                    [dataSource]="dataSource">
+                                    <dxo-export [enabled]="true" fileName="Sales"></dxo-export>
+                                    <dxo-field-chooser [enabled]="false"></dxo-field-chooser>
+                                </dx-pivot-grid>
+                        </editable-pivot-grid>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+<!-- <ng-container *ngIf="popupVisible">
+    <elements-creator [visible]="popupVisible" (onCloseEvent)="popupVisible = false" [duplicateElement]="element"></elements-creator>
+</ng-container> -->

@@ -1,0 +1,15 @@
+<div style="display:flex; flex-direction: column; height:100vh">
+        <app-header-nav></app-header-nav>
+        <div style="flex:1 1 auto;display:flex; flex-direction: row">
+                <div style="flex: 1 1 auto">
+                        <app-aside-nav></app-aside-nav>
+                </div>
+                <div style="flex: 1 1 100%; overflow-x: auto">
+                        <router-outlet></router-outlet>
+                </div>
+        </div>
+        <div style="flex: 0 0 auto">
+                <app-footer></app-footer>
+        </div>  
+</div>
+

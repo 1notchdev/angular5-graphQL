@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-12">
+        <dx-accordion
+                #accordion
+                [dataSource]="properties"
+                [collapsible]="true"
+                [deferRendering] = "true"
+                [multiple]="true"
+                [selectedIndex] = "-1"
+                [animationDuration]="300"
+                [visible]="active"
+        >
+            <div *dxTemplate="let property of 'title'">
+                <h5 class="m--padding-bottom-5 m--padding-top-5">
+                    {{property.name}}
+                </h5>
+            </div>
+            <div *dxTemplate="let property of 'item'">
+            </div>
+        </dx-accordion>
+    </div>
+</div>
+

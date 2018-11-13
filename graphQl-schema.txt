@@ -1,0 +1,323 @@
+type AccountEntity {
+  id: String!
+  name: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  owner: [UserEntity!]!
+  users: [UserEntity!]!
+  permissions: [AccountPermissionEntity!]!
+}
+
+input AccountInput {
+  ownerId: String
+  name: String
+}
+
+type AccountPermissionEntity {
+  id: String!
+  claim: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  account: [AccountEntity!]!
+  user: [UserEntity!]!
+}
+
+input AccountPermissionInput {
+  accountId: String
+  userId: String
+  claim: String
+}
+
+type AspectEntity {
+  id: String!
+  name: String!
+  description: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  members: [ElementEntity!]!
+  children: [AspectEntity!]!
+  parents: [AspectEntity!]!
+  ancestors: [AspectEntity!]!
+  descendants: [AspectEntity!]!
+  properties: [PropertyEntity!]!
+  rules: [RuleEntity!]!
+}
+
+input AspectInput {
+  name: String
+  description: String
+}
+
+type ElementEntity {
+  id: String!
+  name: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  aspects: [AspectEntity!]!
+}
+
+input ElementInput {
+  name: String
+}
+
+type Mutation {
+  updatePropertyData(propertyId: String!, scenarioId: String!, points: String!): PropertyData!
+  createAspects(Aspects: [AspectInput!]!): [AspectEntity!]!
+  updateAspects(updateId: String!, Aspects: AspectInput!): [AspectEntity!]!
+  deleteAspects(Ids: [String!]!): [AspectEntity!]!
+  addMembersToAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  removeMembersFromAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  addChildrenToAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  removeChildrenFromAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  addParentsToAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  removeParentsFromAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  addPropertiesToAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  removePropertiesFromAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  addRulesToAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  removeRulesFromAspect(sourceIds: [String!]!, targetId: String!): [AspectEntity!]!
+  createElements(Elements: [ElementInput!]!): [ElementEntity!]!
+  updateElements(updateId: String!, Elements: ElementInput!): [ElementEntity!]!
+  deleteElements(Ids: [String!]!): [ElementEntity!]!
+  addAspectsToElement(sourceIds: [String!]!, targetId: String!): [ElementEntity!]!
+  removeAspectsFromElement(sourceIds: [String!]!, targetId: String!): [ElementEntity!]!
+  createScenarios(Scenarios: [ScenarioInput!]!): [ScenarioEntity!]!
+  updateScenarios(updateId: String!, Scenarios: ScenarioInput!): [ScenarioEntity!]!
+  deleteScenarios(Ids: [String!]!): [ScenarioEntity!]!
+  addBaseToScenario(sourceIds: [String!]!, targetId: String!): [ScenarioEntity!]!
+  removeBaseFromScenario(sourceIds: [String!]!, targetId: String!): [ScenarioEntity!]!
+  createProperties(Properties: [PropertyInput!]!): [PropertyEntity!]!
+  updateProperties(updateId: String!, Properties: PropertyInput!): [PropertyEntity!]!
+  deleteProperties(Ids: [String!]!): [PropertyEntity!]!
+  addRulesToProperty(sourceIds: [String!]!, targetId: String!): [PropertyEntity!]!
+  removeRulesFromProperty(sourceIds: [String!]!, targetId: String!): [PropertyEntity!]!
+  addBreakdownToProperty(sourceIds: [String!]!, targetId: String!): [PropertyEntity!]!
+  removeBreakdownFromProperty(sourceIds: [String!]!, targetId: String!): [PropertyEntity!]!
+  createRules(Rules: [RuleInput!]!): [RuleEntity!]!
+  updateRules(updateId: String!, Rules: RuleInput!): [RuleEntity!]!
+  deleteRules(Ids: [String!]!): [RuleEntity!]!
+  createProjectPermissions(ProjectPermissions: [ProjectPermissionInput!]!): [ProjectPermissionEntity!]!
+  updateProjectPermissions(updateId: String!, ProjectPermissions: ProjectPermissionInput!): [ProjectPermissionEntity!]!
+  deleteProjectPermissions(Ids: [String!]!): [ProjectPermissionEntity!]!
+  createAccounts(Accounts: [AccountInput!]!): [AccountEntity!]!
+  updateAccounts(updateId: String!, Accounts: AccountInput!): [AccountEntity!]!
+  deleteAccounts(Ids: [String!]!): [AccountEntity!]!
+  addUsersToAccount(sourceIds: [String!]!, targetId: String!): [AccountEntity!]!
+  removeUsersFromAccount(sourceIds: [String!]!, targetId: String!): [AccountEntity!]!
+  addPermissionsToAccount(sourceIds: [String!]!, targetId: String!): [AccountEntity!]!
+  removePermissionsFromAccount(sourceIds: [String!]!, targetId: String!): [AccountEntity!]!
+  createAccountPermissions(AccountPermissions: [AccountPermissionInput!]!): [AccountPermissionEntity!]!
+  updateAccountPermissions(updateId: String!, AccountPermissions: AccountPermissionInput!): [AccountPermissionEntity!]!
+  deleteAccountPermissions(Ids: [String!]!): [AccountPermissionEntity!]!
+  createUsers(Users: [UserInput!]!): [UserEntity!]!
+  updateUsers(updateId: String!, Users: UserInput!): [UserEntity!]!
+  deleteUsers(Ids: [String!]!): [UserEntity!]!
+  addProjectsToUser(sourceIds: [String!]!, targetId: String!): [UserEntity!]!
+  removeProjectsFromUser(sourceIds: [String!]!, targetId: String!): [UserEntity!]!
+  addAccountToUser(sourceIds: [String!]!, targetId: String!): [UserEntity!]!
+  removeAccountFromUser(sourceIds: [String!]!, targetId: String!): [UserEntity!]!
+  addPermissionsToUser(sourceIds: [String!]!, targetId: String!): [UserEntity!]!
+  removePermissionsFromUser(sourceIds: [String!]!, targetId: String!): [UserEntity!]!
+  createUserProfiles(UserProfiles: [UserProfileInput!]!): [UserProfileEntity!]!
+  updateUserProfiles(updateId: String!, UserProfiles: UserProfileInput!): [UserProfileEntity!]!
+  deleteUserProfiles(Ids: [String!]!): [UserProfileEntity!]!
+  createProjects(Projects: [ProjectInput!]!): [ProjectEntity!]!
+  updateProjects(updateId: String!, Projects: ProjectInput!): [ProjectEntity!]!
+  deleteProjects(Ids: [String!]!): [ProjectEntity!]!
+  addUsersToProject(sourceIds: [String!]!, targetId: String!): [ProjectEntity!]!
+  removeUsersFromProject(sourceIds: [String!]!, targetId: String!): [ProjectEntity!]!
+}
+
+type ProjectEntity {
+  id: String!
+  name: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  owner: [UserEntity!]!
+  users: [UserEntity!]!
+}
+
+input ProjectInput {
+  name: String
+  ownerId: String
+}
+
+type ProjectPermissionEntity {
+  id: String!
+  userId: String!
+  claim: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+}
+
+input ProjectPermissionInput {
+  userId: String
+  claim: String
+}
+
+type PropertyData {
+  status: String!
+  payload: String!
+}
+
+type PropertyEntity {
+  id: String!
+  name: String!
+  aggregation: String!
+  rollup: String!
+  kind: String!
+  attributes: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  aspect: [AspectEntity!]!
+  rules: [RuleEntity!]!
+  breakdown: [AspectEntity!]!
+}
+
+input PropertyInput {
+  name: String
+  aggregation: String
+  rollup: String
+  aspectId: String
+  attributes: String
+}
+
+type Query {
+  PropertyData(propertyId: String!, scenarioId: String!): PropertyData!
+  Aspects: [AspectEntity!]!
+  AspectsById(Ids: [String!]!): [AspectEntity!]!
+  AspectsByName(Names: [String!]!): [AspectEntity!]!
+  Elements: [ElementEntity!]!
+  ElementsById(Ids: [String!]!): [ElementEntity!]!
+  Scenarios: [ScenarioEntity!]!
+  ScenariosById(Ids: [String!]!): [ScenarioEntity!]!
+  Properties: [PropertyEntity!]!
+  PropertiesById(Ids: [String!]!): [PropertyEntity!]!
+  Rules: [RuleEntity!]!
+  RulesById(Ids: [String!]!): [RuleEntity!]!
+  ProjectPermissions: [ProjectPermissionEntity!]!
+  ProjectPermissionsById(Ids: [String!]!): [ProjectPermissionEntity!]!
+  Accounts: [AccountEntity!]!
+  AccountsById(Ids: [String!]!): [AccountEntity!]!
+  AccountPermissions: [AccountPermissionEntity!]!
+  AccountPermissionsById(Ids: [String!]!): [AccountPermissionEntity!]!
+  Users: [UserEntity!]!
+  UsersById(Ids: [String!]!): [UserEntity!]!
+  UsersByUserId(UserIds: [String!]!): [UserEntity!]!
+  UserProfiles: [UserProfileEntity!]!
+  UserProfilesById(Ids: [String!]!): [UserProfileEntity!]!
+  Projects: [ProjectEntity!]!
+  ProjectsById(Ids: [String!]!): [ProjectEntity!]!
+}
+
+type RuleEntity {
+  id: String!
+  formula: String!
+  enabled: Boolean!
+  priority: Float!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  precedents: [RuleEntity!]!
+  dependents: [RuleEntity!]!
+  aspect: [AspectEntity!]!
+  property: [PropertyEntity!]!
+}
+
+input RuleInput {
+  formula: String
+  enabled: Boolean
+  aspectId: String
+  propertyId: String
+}
+
+type ScenarioEntity {
+  id: String!
+  name: String!
+  color: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  base: [ScenarioEntity!]!
+}
+
+input ScenarioInput {
+  name: String
+  color: String
+}
+
+type Subscription {
+  dataStream(propertyId: String!, scenarioId: String!): PropertyData!
+}
+
+type UserEntity {
+  id: String!
+  userId: String!
+  name: String!
+  email: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  projects: [ProjectEntity!]!
+  account: [AccountEntity!]!
+  permissions: [AccountPermissionEntity!]!
+}
+
+input UserInput {
+  userId: String
+  name: String
+  email: String
+}
+
+type UserProfileEntity {
+  id: String!
+  preferences: String!
+  relativeId: String!
+  relation: String!
+  dateCreated: Long!
+  createdBy: String!
+  dateModified: Long!
+  modifiedBy: String!
+  user: [UserEntity!]!
+}
+
+input UserProfileInput {
+  userId: String
+  preferences: String
+}

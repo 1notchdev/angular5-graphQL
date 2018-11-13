@@ -1,0 +1,42 @@
+<div class="form-group m-form__group row m--padding-bottom-15 m--padding-top-20">
+
+    <div class="col-md-10 input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">
+                f(x)
+            </span>
+        </div>
+        <rule-editor [properties]="propertyList" #ruleEditor class="form-control m-input"
+            [(value)]="_expression">
+        </rule-editor>
+        <div class="input-group-append">
+            <dx-button [style.visibility]="_expression && _expression.length >0 ? 'visible' : 'hidden'" icon="{{ruleEditor.valid ? 'check': 'remove'}}" type="{{ruleEditor.valid ? 'success': 'danger'}}">
+            </dx-button>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div *ngIf="embedded" class="btn-sm btn btn-secondary m-btn m-btn--icon
+            m-btn--pill m-btn--air m-btn--custom m-btn--label-danger
+            m-btn--bolder m-btn--uppercase"
+            (click)="onClickDelete()">
+            <span>
+                <i class="la la-trash-o m--font-danger"></i>
+                <span>
+                    Delete
+                </span>
+            </span>
+        </div>
+        <div *ngIf="!embedded" class="btn-sm btn btn-secondary m-btn m-btn--icon
+            m-btn--pill m-btn--air m-btn--custom m-btn--label-danger
+            m-btn--bolder m-btn--uppercase"
+            (click)="onClickAddRule()" [ngClass]="{'disabled': disabled}">
+            <span>
+                <i class="la la-trash-o m--font-danger"></i>
+                <span>
+                    Add Rule
+                </span>
+            </span>
+        </div>
+    </div>
+
+</div>

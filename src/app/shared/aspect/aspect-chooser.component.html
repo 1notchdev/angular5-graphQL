@@ -1,0 +1,7 @@
+<dx-tag-box class="form-control m-input" [dataSource]="_validAspects" displayExpr="name" 
+    [value]="_selectedAspects"
+    [searchEnabled]="true"
+    [searchExpr]="['name']"
+    keyExpr="id"
+    (onValueChanged)="onSelectedAspectsChange($event)"
+></dx-tag-box>
